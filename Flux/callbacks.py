@@ -1,14 +1,18 @@
 import traceback
-from Data import Data
+
 from pyrogram import Client
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup)
+
+from Data import Data
 from Flux.generate import generate_session
+
 
 @Client.on_callback_query()
 async def _callbacks(bot: Client, callback_query: CallbackQuery):
     user = await bot.get_me()
     # user_id = callback_query.from_user.id
-    mention = user["mention"]
+    mention = user.mention
     query = callback_query.data.lower()
     if query.startswith("home"):
         if query == 'home':
